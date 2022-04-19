@@ -69,12 +69,30 @@
     document.getElementById('throw-free').addEventListener('click', () => {
         (async () => {
             console.log('無料ギフト投げ開始')
-            // 黄色～青
+            // 横一列1回
+            for (let i = 0; i < 5; i++) {
+                let remaining = Number(document.getElementsByClassName("gift")[i].getElementsByClassName('num')[0].textContent.replace('\n    × ', '').replace('\n  ', ''))
+                let giftId = document.getElementsByClassName("gift")[i].getElementsByTagName('img')[0].src.replace('https://image.showroom-cdn.com/showroom-prod/assets/img/gift/', '').split('_')[0]
+                let obj = {
+                    gift_id: giftId,
+                    live_id: liveId,
+                    num: 10,
+                    is_delay: 0,
+                    csrf_token: csrfToken
+                }
+                if (remaining < 10) {
+                    obj.num = remaining % 10
+                }
+                const body = Object.keys(obj).map((key) => key + "=" + encodeURIComponent(obj[key])).join("&")
+                await fetch("https://www.showroom-live.com/api/live/gifting_free", { method, headers, body })
+                await waitTime(600);
+            }
+            await waitTime(1000);
+            // 縦に全部
             for (let i = 0; i < 5; i++) {
                 let remaining = Number(document.getElementsByClassName("gift")[i].getElementsByClassName('num')[0].textContent.replace('\n    × ', '').replace('\n  ', ''))
                 let giftId = document.getElementsByClassName("gift")[i].getElementsByTagName('img')[0].src.replace('https://image.showroom-cdn.com/showroom-prod/assets/img/gift/', '').split('_')[0]
                 while (remaining != 0) {
-                    console.log(remaining)
                     let obj = {
                         gift_id: giftId,
                         live_id: liveId,

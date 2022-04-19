@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "SHOWROOM Auto Count & Gifting",
     "description": "SHOWROOM配信でカウント・無料ギフトを自動で投げることができるようになるツールです",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "icons": {
         "128": "img/i128.png"
     },
