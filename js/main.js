@@ -22,6 +22,7 @@
     let countElm = document.createElement("li");
     countElm.setAttribute("id", "count-start");
     let countTextElm = document.createElement("a");
+    countTextElm.setAttribute("id", "count-text");
     countTextElm.textContent = "ｶｳﾝﾄ";
     countTextElm.style.color = "white";
     countTextElm.style.marginLeft = "1em";
@@ -31,6 +32,7 @@
     let freeGiftElm = document.createElement("li");
     freeGiftElm.setAttribute("id", "throw-free");
     let freeGiftTextElm = document.createElement("a");
+    freeGiftTextElm.setAttribute("id", "throw-free-text");
     freeGiftTextElm.textContent = "無料ｷﾞﾌﾄ";
     freeGiftTextElm.style.color = "white";
     freeGiftTextElm.style.cursor = "pointer";
@@ -46,9 +48,12 @@
     };
     document.getElementById('count-start').addEventListener('click', () => {
         (async () => {
+            let countTextElm = document.getElementById('count-text')
+            document.getElementById('count-start').style.pointerEvents = "none"
             console.log('カウント開始')
             for (let i = 0; i <= 50; i++) {
                 console.log(i)
+                countTextElm.textContent = i
                 const obj = {
                     live_id: liveId,
                     comment: i,
@@ -68,6 +73,9 @@
 
     document.getElementById('throw-free').addEventListener('click', () => {
         (async () => {
+            let giftTextElm = document.getElementById('throw-free-text')
+            giftTextElm.textContent = "星投げ中"
+            document.getElementById('throw-free').style.pointerEvents = "none"
             console.log('無料ギフト投げ開始')
             // 横一列1回
             for (let i = 0; i < 5; i++) {
@@ -111,6 +119,8 @@
                     await waitTime(600);
                 }
             }
+            giftTextElm.textContent = "無料ｷﾞﾌﾄ"
+            document.getElementById('throw-free').style.pointerEvents = ""
             console.log('無料ギフト投げ終了')
         })();
     });
