@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "SHOWROOM Auto Count & Gifting",
+    "description": "SHOWROOM配信でカウント・無料ギフトを自動で投げることができるようになるツールです",
+    "version": "1.0.0",
+    "icons": {
+        "128": "img/i128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.showroom-live.com/r/*"
+            ],
+            "js": [
+                "js/main.js"
+            ]
+        }
+    ]
+}
